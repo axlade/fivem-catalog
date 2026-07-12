@@ -4,6 +4,8 @@ set -e
 if [ ! -f .env ]; then
     echo "Creating .env from .env.docker..."
     cp .env.docker .env
+    DB_PASS=$(openssl rand -hex 24)
+    sed -i.bak "s|^DB_PASSWORD=.*|DB_PASSWORD=${DB_PASS}|" .env && rm -f .env.bak
 fi
 
 docker compose up -d --build
