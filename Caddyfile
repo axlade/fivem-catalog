@@ -1,0 +1,8 @@
+{
+	email {$ACME_EMAIL}
+}
+
+{$APP_DOMAIN} {
+	reverse_proxy app:80
+	encode gzip
+}

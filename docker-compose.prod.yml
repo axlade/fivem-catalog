@@ -1,0 +1,28 @@
+# Production overlay: adds Caddy in front of the app as a TLS-terminating
+# reverse proxy, which obtains and renews a Let's Encrypt certificate for
+# APP_DOMAIN automatically. Requires a domain's DNS A/AAAA record pointing at
+# this server, with ports 80 and 443 reachable from the internet.
+#
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# (or just ./install-prod.sh)
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:?Set APP_DOMAIN in .env before using docker-compose.prod.yml}
+      ACME_EMAIL: ${ACME_EMAIL:?Set ACME_EMAIL in .env before using docker-compose.prod.yml}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
