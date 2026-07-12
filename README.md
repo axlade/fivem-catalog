@@ -7,6 +7,8 @@ A community marketplace for FiveM server resources — scripts, MLOs, EUP, and v
 Requires [Docker](https://docs.docker.com/get-docker/) and Docker Compose.
 
 ```bash
+git clone https://github.com/axlade/fivem-catalog.git
+cd fivem-catalog
 ./install.sh
 ```
 
