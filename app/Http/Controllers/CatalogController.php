@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -63,9 +64,16 @@ class CatalogController extends Controller
 
         abort_unless($isPubliclyVisible || $canPreview, 404);
 
-        if ($resource->isApproved()) {
-            $resource->increment('views_count');
-            ResourceEvent::create(['resource_id' => $resource->id, 'type' => 'view']);
+        $isOwnResource = $viewer && $viewer->id === $resource->user_id;
+
+        if ($resource->isApproved() && ! $isOwnResource) {
+            $viewCooldownKey = 'resource-view:'.$resource->id.':'.($viewer ? "user:{$viewer->id}" : 'ip:'.$request->ip());
+
+            if (! Cache::has($viewCooldownKey)) {
+                Cache::put($viewCooldownKey, true, now()->addHours(4));
+                $resource->increment('views_count');
+                ResourceEvent::create(['resource_id' => $resource->id, 'type' => 'view']);
+            }
         }
 
         $resource->load(['user', 'tags', 'images', 'updates', 'ratings.user', 'comments.user']);
