@@ -28,6 +28,7 @@ class ProfileUpdateRequest extends FormRequest
             ],
             'bio' => ['nullable', 'string', 'max:1000'],
             'avatar' => ['nullable', 'image', 'max:2048'],
+            'banner' => ['nullable', 'image', 'max:4096'],
             'tebex_url' => ['nullable', 'url', 'max:2048'],
             'github_url' => ['nullable', 'url', 'max:2048'],
             'discord_invite_url' => ['nullable', 'url', 'max:2048'],

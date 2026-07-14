@@ -40,7 +40,15 @@ class ProfileController extends Controller
             $data['avatar_path'] = $request->file('avatar')->store('avatars', 'public');
         }
 
-        unset($data['avatar']);
+        if ($request->hasFile('banner')) {
+            if ($user->banner_path) {
+                Storage::disk('public')->delete($user->banner_path);
+            }
+
+            $data['banner_path'] = $request->file('banner')->store('banners', 'public');
+        }
+
+        unset($data['avatar'], $data['banner']);
 
         $user->fill($data);
 

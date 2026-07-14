@@ -15,6 +15,27 @@
                 <h2 class="text-lg font-bold text-zinc-100 mb-1">Profile Branding</h2>
                 <p class="text-sm text-zinc-500 mb-6">This is how you'll appear across the catalog and on your public profile.</p>
 
+                <div x-data="{ bannerPreview: null }" class="mb-6">
+                    <label class="block text-sm font-medium text-zinc-300 mb-1">Profile Banner</label>
+                    <div class="aspect-[3/1] w-full rounded-lg bg-zinc-800 overflow-hidden">
+                        <template x-if="bannerPreview">
+                            <img :src="bannerPreview" alt="Banner preview" class="h-full w-full object-cover">
+                        </template>
+                        <template x-if="!bannerPreview">
+                            <span>
+                                @if ($user->banner_path)
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($user->banner_path) }}" alt="" class="h-full w-full object-cover">
+                                @endif
+                            </span>
+                        </template>
+                    </div>
+                    <input type="file" id="banner" name="banner" accept="image/*"
+                        @change="bannerPreview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null"
+                        class="mt-2 w-full text-sm text-zinc-400 file:mr-4 file:rounded-md file:border-0 file:bg-brand-500 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-zinc-950">
+                    <p class="mt-1 text-xs text-zinc-500">PNG or JPG, max 4MB. Widescreen images (e.g. 1500&times;500) work best.</p>
+                    @error('banner') <p class="mt-1 text-sm text-red-400">{{ $message }}</p> @enderror
+                </div>
+
                 <div class="flex items-center gap-6" x-data="{ preview: null }">
                     <div class="h-20 w-20 shrink-0 rounded-full bg-zinc-800 flex items-center justify-center text-2xl font-bold text-brand-400 overflow-hidden">
                         <template x-if="preview">

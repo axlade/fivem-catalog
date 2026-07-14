@@ -28,6 +28,7 @@ class User extends Authenticatable
         'role',
         'bio',
         'avatar_path',
+        'banner_path',
         'tebex_url',
         'github_url',
         'discord_invite_url',

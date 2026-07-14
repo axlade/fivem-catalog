@@ -29,8 +29,17 @@
     :canonical="route('creators.show', $creator)"
     :schema="json_encode($schema)">
     <x-slot:hero>
-        <div class="bg-zinc-900/30 border-b border-zinc-900 py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative border-b border-zinc-900 py-12 overflow-hidden">
+            @if ($creator->banner_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($creator->banner_path))
+                <div class="absolute inset-0">
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($creator->banner_path) }}" alt="" class="h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-zinc-950/70"></div>
+                </div>
+            @else
+                <div class="absolute inset-0 bg-zinc-900/30"></div>
+            @endif
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 @if (auth()->user()?->isAdmin() && auth()->id() !== $creator->id)
                     <div class="flex justify-end mb-6">
                         <div class="inline-flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/60 px-4 py-2">
