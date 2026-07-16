@@ -72,7 +72,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    <span class="text-sm text-zinc-400" x-text="fileName ?? 'Click to upload or drag and drop (PNG/JPG, max 2MB)'"></span>
+                    <span class="text-sm text-zinc-400" x-text="fileName ?? 'Click to upload or drag and drop (PNG/JPG, max 1GB)'"></span>
                     <input type="file" name="thumbnail" id="thumbnail" accept="image/*" class="hidden"
                         x-ref="thumbnailInput" @change="fileName = $event.target.files[0]?.name">
                 </label>

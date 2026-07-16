@@ -32,7 +32,7 @@
                     <input type="file" id="banner" name="banner" accept="image/*"
                         @change="bannerPreview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null"
                         class="mt-2 w-full text-sm text-zinc-400 file:mr-4 file:rounded-md file:border-0 file:bg-brand-500 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-zinc-950">
-                    <p class="mt-1 text-xs text-zinc-500">PNG or JPG, max 4MB. Widescreen images (e.g. 1500&times;500) work best.</p>
+                    <p class="mt-1 text-xs text-zinc-500">PNG or JPG, max 1GB. Widescreen images (e.g. 1500&times;500) work best.</p>
                     @error('banner') <p class="mt-1 text-sm text-red-400">{{ $message }}</p> @enderror
                 </div>
 
@@ -57,7 +57,7 @@
                         <input type="file" id="avatar" name="avatar" accept="image/*"
                             @change="preview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null"
                             class="w-full text-sm text-zinc-400 file:mr-4 file:rounded-md file:border-0 file:bg-brand-500 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-zinc-950">
-                        <p class="mt-1 text-xs text-zinc-500">PNG or JPG, max 2MB.</p>
+                        <p class="mt-1 text-xs text-zinc-500">PNG or JPG, max 1GB.</p>
                         @error('avatar') <p class="mt-1 text-sm text-red-400">{{ $message }}</p> @enderror
                     </div>
                 </div>

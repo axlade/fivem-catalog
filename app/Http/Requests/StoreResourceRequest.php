@@ -54,9 +54,9 @@ class StoreResourceRequest extends FormRequest
             'download_url' => [Rule::requiredIf($isLinkMethod), 'nullable', 'url', 'max:2048'],
             'download_file' => [Rule::requiredIf($isFileMethod), 'nullable', 'file', 'mimes:zip', 'max:51200'],
             'tebex_url' => [Rule::requiredIf(! $isFree), 'nullable', 'url', 'max:2048'],
-            'thumbnail' => ['required', 'image', 'max:2048'],
+            'thumbnail' => ['required', 'image', 'max:1048576'],
             'images' => ['nullable', 'array', 'max:8'],
-            'images.*' => ['image', 'max:4096'],
+            'images.*' => ['image', 'max:1048576'],
         ];
     }
 

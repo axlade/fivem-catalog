@@ -57,9 +57,9 @@ class UpdateResourceRequest extends FormRequest
             'download_url' => [Rule::requiredIf($isLinkMethod), 'nullable', 'url', 'max:2048'],
             'download_file' => [Rule::requiredIf($needsNewFile), 'nullable', 'file', 'mimes:zip', 'max:51200'],
             'tebex_url' => [Rule::requiredIf(! $isFree), 'nullable', 'url', 'max:2048'],
-            'thumbnail' => ['nullable', 'image', 'max:2048'],
+            'thumbnail' => ['nullable', 'image', 'max:1048576'],
             'images' => ['nullable', 'array', 'max:8'],
-            'images.*' => ['image', 'max:4096'],
+            'images.*' => ['image', 'max:1048576'],
             'remove_images' => ['nullable', 'array'],
             'remove_images.*' => ['integer', Rule::exists('resource_images', 'id')->where('resource_id', $resource->id)],
         ];
