@@ -15,6 +15,7 @@ class AppLayout extends Component
         public ?string $schema = null,
         public ?string $robots = null,
         public ?string $ogType = null,
+        public ?string $ogPrice = null,
     ) {
     }
 

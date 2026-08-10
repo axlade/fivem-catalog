@@ -18,6 +18,7 @@
         <meta name="description" content="{{ \Illuminate\Support\Str::limit($metaDescription, 160, '') }}">
         <meta name="robots" content="{{ $robots ?? 'index, follow' }}">
         <link rel="canonical" href="{{ $metaCanonical }}">
+        <meta name="theme-color" content="#FF9100">
 
         {{-- Open Graph --}}
         <meta property="og:type" content="{{ $ogType ?? 'website' }}">
@@ -26,13 +27,19 @@
         <meta property="og:description" content="{{ \Illuminate\Support\Str::limit($metaDescription, 200, '') }}">
         <meta property="og:url" content="{{ $metaCanonical }}">
         <meta property="og:image" content="{{ $metaImage }}">
+        <meta property="og:image:alt" content="{{ $metaTitle }}">
         <meta property="og:locale" content="en_US">
+        @isset($ogPrice)
+            <meta property="product:price:amount" content="{{ $ogPrice }}">
+            <meta property="product:price:currency" content="USD">
+        @endisset
 
         {{-- Twitter Card --}}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ $metaTitle }}">
         <meta name="twitter:description" content="{{ \Illuminate\Support\Str::limit($metaDescription, 200, '') }}">
         <meta name="twitter:image" content="{{ $metaImage }}">
+        <meta name="twitter:image:alt" content="{{ $metaTitle }}">
 
         <link rel="icon" href="{{ asset('logo.svg') }}" type="image/svg+xml">
 

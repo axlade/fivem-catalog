@@ -7,14 +7,13 @@
 
     $schema = [
         '@context' => 'https://schema.org',
-        '@type' => 'SoftwareApplication',
+        '@type' => 'Product',
         'name' => $resource->title,
         'description' => $plainDescription,
-        'applicationCategory' => 'GameApplication',
-        'operatingSystem' => 'FiveM',
+        'category' => $categoryLabels[$resource->category] ?? $resource->category,
         'url' => route('resources.show', $resource),
-        'author' => [
-            '@type' => 'Person',
+        'brand' => [
+            '@type' => 'Brand',
             'name' => $resource->user->name,
         ],
         'offers' => [
@@ -56,6 +55,8 @@
     :description="$plainDescription ?: null"
     :image="$resourceImage"
     :canonical="route('resources.show', $resource)"
+    og-type="product"
+    :og-price="number_format($resource->price, 2, '.', '')"
     :schema="json_encode([$schema, $breadcrumbSchema])">
     <nav aria-label="Breadcrumb" class="mb-6">
         <ol class="flex flex-wrap items-center gap-1.5 text-sm text-zinc-500">

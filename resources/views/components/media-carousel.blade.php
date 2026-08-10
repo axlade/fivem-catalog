@@ -22,7 +22,7 @@
                     <iframe src="{{ $slide['src'] }}" class="h-full w-full" loading="lazy" allowfullscreen
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 @else
-                    <a href="{{ $slide['src'] }}" target="_blank" rel="noopener"
+                    <a href="{{ $slide['src'] }}" target="_blank" rel="noopener nofollow ugc"
                         class="flex items-center justify-center h-full w-full text-sm text-zinc-400 hover:text-brand-400 transition">
                         Watch video externally &#8599;
                     </a>
