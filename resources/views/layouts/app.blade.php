@@ -46,6 +46,7 @@
             '@type' => 'WebSite',
             'name' => $siteName,
             'url' => url('/'),
+            'description' => 'Marketplace for FiveM scripts, MLOs, EUP, and vehicles for GTA RP servers.',
             'potentialAction' => [
                 '@type' => 'SearchAction',
                 'target' => url('/').'?q={search_term_string}',
@@ -59,6 +60,7 @@
             'name' => $siteName,
             'url' => url('/'),
             'logo' => asset('logo.svg'),
+            'description' => 'Marketplace for FiveM scripts, MLOs, EUP, and vehicles for GTA RP servers.',
         ]) !!}</script>
 
         @isset($schema)

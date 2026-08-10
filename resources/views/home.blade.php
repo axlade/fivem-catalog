@@ -1,5 +1,6 @@
 <x-app-layout
-    description="Browse free and premium FiveM scripts, MLOs, EUP, and vehicles. Download instantly or purchase via Tebex — ESX, QBCore, OX, and Standalone frameworks supported on the FiveM-Catalog community marketplace."
+    title="FiveM Scripts & GTA RP Resources"
+    description="Download free and premium FiveM scripts, MLOs, EUP, and vehicles for your GTA RP server. ESX, QBCore, OX & Standalone supported — the FiveM-Catalog marketplace."
     :canonical="route('home')">
     <x-slot:hero>
         <div class="relative overflow-hidden border-b border-zinc-900 bg-zinc-950">
@@ -11,10 +12,10 @@
                     Scripts &middot; MLOs &middot; EUP &middot; Vehicles
                 </span>
                 <h1 class="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-50">
-                    THE GO-TO RESOURCE FOR YOUR <span class="text-brand-500">FIVEM</span> RESOURCES
+                    THE GO-TO MARKETPLACE FOR <span class="text-brand-500">FIVEM SCRIPTS</span>
                 </h1>
                 <p class="mt-4 max-w-2xl mx-auto text-lg text-zinc-400">
-                    Discover, download, and sell scripts built by the FiveM community &mdash; free and premium, all in one catalog.
+                    Discover, download, and sell FiveM scripts, MLOs, EUP, and vehicles for your GTA RP server &mdash; free and premium, all in one catalog.
                 </p>
             </div>
         </div>
