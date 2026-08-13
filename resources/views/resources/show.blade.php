@@ -55,6 +55,7 @@
     :description="$plainDescription ?: null"
     :image="$resourceImage"
     :canonical="route('resources.show', $resource)"
+    :preload-image="$resourceImage"
     og-type="product"
     :og-price="number_format($resource->price, 2, '.', '')"
     :schema="json_encode([$schema, $breadcrumbSchema])">

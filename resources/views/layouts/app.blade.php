@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        @isset($preloadImage)
+            <link rel="preload" as="image" href="{{ $preloadImage }}" fetchpriority="high">
+        @endisset
+
         @php
             $siteName = config('app.name', 'FiveM-Catalog');
             $metaTitle = $title ?? $siteName;

@@ -20,6 +20,15 @@
     if ($creatorImage) {
         $schema['mainEntity']['image'] = $creatorImage;
     }
+
+    $breadcrumbSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => route('home')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => $creator->username, 'item' => route('creators.show', $creator)],
+        ],
+    ];
 @endphp
 
 <x-app-layout
@@ -27,7 +36,7 @@
     :description="$creatorDescription"
     :image="$creatorImage"
     :canonical="route('creators.show', $creator)"
-    :schema="json_encode($schema)">
+    :schema="json_encode([$schema, $breadcrumbSchema])">
     <x-slot:hero>
         <div class="relative border-b border-zinc-900 py-12 overflow-hidden">
             @if ($creator->banner_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($creator->banner_path))
@@ -40,6 +49,14 @@
             @endif
 
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav aria-label="Breadcrumb" class="mb-6">
+                    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-zinc-400">
+                        <li><a href="{{ route('home') }}" class="hover:text-brand-400 transition">Home</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li class="text-zinc-200" aria-current="page">{{ $creator->username }}</li>
+                    </ol>
+                </nav>
+
                 @if (auth()->user()?->isAdmin() && auth()->id() !== $creator->id)
                     <div class="flex justify-end mb-6">
                         <div class="inline-flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/60 px-4 py-2">

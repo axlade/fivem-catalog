@@ -9,6 +9,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
         {{-- Sidebar Filters --}}
         <aside class="space-y-6 lg:sticky lg:top-20 lg:self-start">
+            <h2 class="sr-only">Filter Freelance Services</h2>
             <form method="GET" action="{{ route('services.index') }}" id="filters-form" class="space-y-6" x-data
                 @change="$el.submit()">
                 <div>
@@ -38,6 +39,7 @@
 
         {{-- Services Grid --}}
         <div>
+            <h2 class="sr-only">Freelance FiveM Developers</h2>
             <div class="flex items-center justify-between mb-6">
                 <p class="text-sm text-zinc-500">{{ $services->total() }} services found</p>
             </div>

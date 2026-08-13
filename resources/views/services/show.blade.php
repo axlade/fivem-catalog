@@ -32,6 +32,16 @@
             'worstRating' => '1',
         ];
     }
+
+    $breadcrumbSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => route('home')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Services', 'item' => route('services.index')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $service->title, 'item' => route('services.show', $service)],
+        ],
+    ];
 @endphp
 
 <x-app-layout
@@ -39,15 +49,16 @@
     :description="$plainDescription ?: null"
     :image="$serviceImage"
     :canonical="route('services.show', $service)"
-    :schema="json_encode($schema)">
-    <div class="mb-6">
-        <a href="{{ route('services.index') }}" class="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-brand-400 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-            </svg>
-            Back to Services
-        </a>
-    </div>
+    :schema="json_encode([$schema, $breadcrumbSchema])">
+    <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex flex-wrap items-center gap-1.5 text-sm text-zinc-500">
+            <li><a href="{{ route('home') }}" class="hover:text-brand-400 transition">Home</a></li>
+            <li aria-hidden="true">/</li>
+            <li><a href="{{ route('services.index') }}" class="hover:text-brand-400 transition">Services</a></li>
+            <li aria-hidden="true">/</li>
+            <li class="text-zinc-300 truncate max-w-[240px]" aria-current="page">{{ $service->title }}</li>
+        </ol>
+    </nav>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {{-- Main content --}}
